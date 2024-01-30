@@ -1,25 +1,32 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import 'react-toastify/dist/ReactToastify.css';
+import Login from './pages/Login/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import Cadastro from './pages/Cadastro/Cadastro';
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
+import Footer from './components/Footer/Footer';
+import ListaTemas from './components/temas/listaTemas/ListaTemas';
+import FormularioTema from './components/temas/formularioTema/FormularioTema';
+import DeletarTema from './components/temas/deletarTemas/DeletarTema';
+import ListaPostagens from './components/postagens/listaPostagens/ListaPostagens';
+import FormularioPostagem from './components/postagens/formularioPostagem/FormularioPostagem';
 
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
-
-import Login from './pages/Login/Login'
-import Cadastro from './pages/Cadastro/Cadastro'
-import Home from './pages/Home/Home'
-import ListaTemas from './components/temas/listaTemas/ListaTemas'
-import FormularioTema from './components/temas/formularioTema/FormularioTema'
-import DeletarTema from './components/temas/deletarTemas/DeletarTema'
-import ListaPostagens from './components/postagens/listaPostagens/ListaPostagens'
-import FormularioPostagem from './components/postagens/formularioPostagem/FormularioPostagem'
-import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem'
+import Perfil from './pages/Perfil/Perfil';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
 
 function App() {
+  
   return (
     <>
-    <AuthProvider>
+      <AuthProvider>
+      <ToastContainer />
         <BrowserRouter>
-          <Navbar />
+        <Navbar />
           <div className='min-h-[80vh]'>
             <Routes>
               <Route path="/" element={<Login />} />
@@ -34,12 +41,14 @@ function App() {
               <Route path="/cadastroPostagem" element={<FormularioPostagem />} />
               <Route path="/editarPostagem/:id" element={<FormularioPostagem />} />
               <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
+              <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
           <Footer />
         </BrowserRouter>
-        </AuthProvider>
+      </AuthProvider>
     </>
   );
 }
+
 export default App;
